@@ -1,0 +1,224 @@
+<h1>Blockly as a programming (and programming teaching) tool</h1>
+<p>One of the first things that brought me to programming was Logo back in the mid 1980's. It wasnt the structure of
+  the programs that you could type stuff that would make things happen on the screen. To me the magic was that you
+  could share and that typing the same things would always produce the same results so you could iterate and do even
+  crazier things with your designs.</p>
+<p>If running the following commands:</p>
+<pre><code><span class="hljs-keyword">repeat</span> <span class="hljs-number">4</span>
+<span class="hljs-keyword">forward</span> <span class="hljs-number">90</span>
+</code></pre>
+<p>would create a square what would happen if we started moving the turtle around without drawing anything and then run
+  our square command? How would we write circles? Triangles? Other geometrical shapes?</p>
+<p>This has always motivated my interest in computers, the web, and odball projects that will make something
+  interesting but not necessarily useful. It's curiosity, the desire to know how to do something even if there are
+  better ways to do it.</p>
+<p>Move forward about 30 years and I found <a href="https://scratch.mit.edu/">Scratch</a> and I found myself thinking
+  back to Logo and my experiences with old computers at school.</p>
+<p>But it looks different and it uses a different paradigm to create the scripts that will make things happen. Figure 1
+  shows an animated example created with Scratch and Figure 2 shows a more technically complex example using the same
+  language.</p>
+<!-- <figure>
+  <img src="images/scatch-screen-shot-2013.png" alt="">
+  <figcaption>Scratch 2.0 screenshot</figcaption>
+</figure>
+<figure>
+  <img src="images/mihoxw.png" alt="">
+  <figcaption>More complex example of Scratch</figcaption>
+</figure> -->
+<p>That's where I think Scratch and similar tools can be useful. Google released a set of coding tutorials using Wonder
+  Woman and <a href="https://developers.google.com/blockly/">Blockly</a>, a Scratch-like application to make teaching
+  computer science concepts easier for children.</p>
+<p>Figure 3 shows an example of what one of the <a href="https://www.madewithcode.com/projects/wonderwoman">Wonder
+    Woman based tutorials</a> look like: you assemble the tasks for Wonder woman using blocks and then play the actions
+  represented by the blocks we've assembled together.</p>
+<!-- <figure>
+<img src="images/wonder-woman-coding-tutorial.jpg" alt="">
+<figcaption><a href="https://www.madewithcode.com/projects/wonderwoman">Wonder Woman Coding Tutorial</a></figcaption>
+</figure> -->
+<p>How can we leverage these tools for a larger audience? How can we make a programming environment that gives us both
+  the advantage of Blockly/Scratch and allows us to copy and paste the resulting code in one of many programming
+  languages.</p>
+<p>Blockly has several advantages: it allows you to see the results of your block actions in the target language of
+  your choice. The currently supported languages are:</p>
+<ul>
+  <li>Javascript</li>
+  <li>Dart</li>
+  <li>PHP</li>
+  <li>Lua</li>
+  <li>Python</li>
+</ul>
+<p>In the configuration we can create groups of blocks to show users.</p>
+<p>We can configure Blockly to show only a few block or the entire set.</p>
+<p>We can also create custom blocks that better fit the language we want to teach or the session's objectives.</p>
+<p>It can be configured to run on Google's App Engine. This will create a community where scripts will be automatically
+  saved and shared with the community.</p>
+<p>Let's build a Blockly app.</p>
+<h2>Building Basics</h2>
+<p>Download the code or clone the Git repository from:</p>
+<pre><code>https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/google/</span>blockly
+</code></pre>
+<p>If you downloaded a compressed version of the files expand them and get them ready. We'll come back to them to build
+  the directory structure for o ur application.</p>
+<p>Blockly is built with Javascript, Node/NPM and Google's Closure Compiler. I will not cover how to build the app...
+  You can rebuild the scripts on your own if interested.</p>
+<p>We'll start with the most basic Blockly app. It is a simple HTML page where we insert a series of elements to make
+  Blockly work.</p>
+<p>The first part is to add Blockly an associated scripts for the page:</p>
+<ul>
+  <li>Blockly itself</li>
+  <li>A basic set of blocks</li>
+  <li>The Javascript syntax file</li>
+  <li>English translation of Blockly's messages</li>
+</ul>
+<pre><code class="language-language-markup"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"js/blockly_compressed.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"js/blocks_compressed.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"js/javascript_compressed.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"msg/js/en.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>We then set up two empty elements: A div that will hold the blocks and the work area, and a text are that will hold
+  the Javascript version of the block code.</p>
+<pre><code class="language-language-markup">&lt;div <span class="hljs-attribute">id</span>=<span class="hljs-string">"blocklyDiv"</span>
+      <span class="hljs-attribute">style</span>=<span class="hljs-string">"height: 600px; width: 800px;"</span>&gt;&lt;/div&gt;
+&lt;textarea <span class="hljs-attribute">id</span>=<span class="hljs-string">"textarea"</span>
+          <span class="hljs-attribute">style</span>=<span class="hljs-string">"width: 800px; height: 300px"</span>&gt;&lt;/textarea&gt;
+</code></pre>
+<p>The next postion is an <code>xml</code> element that will hold the block elements that we want to use in our
+  application.</p>
+<pre><code class="language-language-markup">&lt;xml id=<span class="hljs-string">"toolbox"</span>
+      style=<span class="hljs-string">"display: none"</span>&gt;
+  &lt;<span class="hljs-keyword">block</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">"controls_if"</span>&gt;&lt;/<span class="hljs-keyword">block</span>&gt;
+  &lt;<span class="hljs-keyword">block</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">"controls_repeat_ext"</span>&gt;&lt;/<span class="hljs-keyword">block</span>&gt;
+  &lt;<span class="hljs-keyword">block</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">"logic_compare"</span>&gt;&lt;/<span class="hljs-keyword">block</span>&gt;
+  &lt;<span class="hljs-keyword">block</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">"math_number"</span>&gt;&lt;/<span class="hljs-keyword">block</span>&gt;
+  &lt;<span class="hljs-keyword">block</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">"math_arithmetic"</span>&gt;&lt;/<span class="hljs-keyword">block</span>&gt;
+  &lt;<span class="hljs-keyword">block</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">"text"</span>&gt;&lt;/<span class="hljs-keyword">block</span>&gt;
+  &lt;<span class="hljs-keyword">block</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">"text_print"</span>&gt;&lt;/<span class="hljs-keyword">block</span>&gt;
+&lt;/xml&gt;
+</code></pre>
+<p>The final portion is the script that will make everything work. This is also broken in three sections.</p>
+<p>The first part injects Blockly with the toolbox we defined earlier.</p>
+<p>The next function defines how Blockly will update the text area with the result of coverting the blocks into
+  Javascript.</p>
+<p>Finally we add a change listener and tell it to run <code>myUpdateFunction</code> every time it's triggered.</p>
+<pre><code class="language-language-markup"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">var</span> workspace = Blockly.inject(<span class="hljs-string">'blocklyDiv'</span>,
+{<span class="hljs-attr">toolbox</span>: <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'toolbox'</span>)});
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myUpdateFunction</span>(<span class="hljs-params">event</span>) </span>{
+  <span class="hljs-keyword">var</span> code = Blockly.JavaScript.workspaceToCode(workspace);
+  <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'textarea'</span>).value = code;
+}
+workspace.addChangeListener(myUpdateFunction);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>That's it. We have a Blockly application that will convert the blocks into Javascript. However it won't save the
+  code and provides no way of sharing it. We'll tackle that challenge next.</p>
+<h2>Adding a backend server</h2>
+<p>Blockly comes pre-configured to work with <a href="https://cloud.google.com/appengine/">Google App Engine</a> (it's
+  a Google product, after all). For this section I will assume that you have some experience in configuring and
+  installing applications in App Engine; if not I would recommend you find a <a href="https://cloud.google.com/appengine/docs/standard/python/quickstart">good
+    tutorial</a> and go through it before continuing.</p>
+<ol>
+  <li>Download and install the <a href="https://cloud.google.com/appengine/downloads">Python SDK</a></li>
+  <li>Log into <a href="https://appengine.google.com/">Google App Engine</a> and create an application.</li>
+  <li>Edit <code>appengine/app.yaml</code> and change the application ID from blockly-demo to the application name you
+    created in the previous step.</li>
+  <li>Copy (or soft-link) the following files and directories into appengine/static/:
+    <ul>
+      <li>demos/</li>
+      <li>msg/</li>
+      <li>media/</li>
+      <li>*_compressed.js</li>
+    </ul>
+  </li>
+  <li>Run the Google App Engine Launcher from the GUI, add your appengine directory as an existing application, and
+    press the &quot;Deploy&quot; button. If you prefer to use the command line, run: <code>appcfg.py --oauth2 update
+      appengine/</code></li>
+</ol>
+<p><strong>Optional</strong>: If you'd like to use <code>blockly_uncompressed.js</code> on the server, also copy that
+  file into <code>appengine/static/</code>, copy core into appengine/static/, and copy closure-library/ into the parent
+  directory, appengine/.</p>
+<p><strong>Optional</strong>: If you'd like to run the Blockly Playground, you'll have to copy the blocks, generators,
+  and tests directories, as well as the files in the prior optional step.</p>
+<p>Note that the Google App Engine Launcher has been deprecated and a replacement has not been implemented or made
+  official. That said I could get away with using an older version of the App Engine Launcher and deploy the
+  application.</p>
+<p>You can find it at <a href="https://blockly-demo-171420.appspot.com/">https://blockly-demo-171420.appspot.com/</a></p>
+<p>The demos will show you the capabilities of Blockly beyond what we've discussed so far. Now that we have the tools
+  we can talk a little bit about philosophy.</p>
+<h2>Why use Blockly?</h2>
+<p>When we start looking at Blockly one of the first things to consider is who is our target audience. I'll apply an
+  ADDIE model to suggest ideas about how to use Blockly in an educational environment.</p>
+<p><strong>Analysis</strong>:</p>
+<p>We're building an application that will make it easier to learn programming.</p>
+<p>These Blocky applications can be targeted towards younger users who are learning to program and interact with code
+  for the first time and also for older users who have not had formal programming experiences.</p>
+<p><strong>Design</strong>:</p>
+<p>Depending on how we want to structure the learning experiences we can either create individual Blockly pages like
+  the Made with Code <a href="https://www.madewithcode.com/projects/wonderwoman">Wonder Woman's Examples</a> where you
+  limit the number of blocks you can use and also the type of blocks a given page has access to.</p>
+<p>For older users or those children who have mastered the more limited concepts we can also provide a larger set of
+  blocks to experiment with.</p>
+<p>Finally, if we're working with frameworks we can generate custom blocks that will do specific tasks. For example, if
+  we're using Blockly to teach web components concepts we can create blocks that will translate to class-based custom
+  elements.</p>
+<p><strong>Development</strong>:</p>
+<p>Before we modify any of the blocks and create pages we need to know what the breakdown for the pages is: what blocks
+  are they using and what is our objective for that particular page.</p>
+<p>Once we do we can take some of pages on the demo site and modify them to match our goals. We can also theme the
+  pages to a common look and feel.</p>
+<p><strong>Implementation</strong>:</p>
+<p>Implementing the pages is easy. We can start from scratch or we can clone an existing demo page that has the
+  features we need and modify it to suit.</p>
+<p>At the server level we must make sure to change the version of the application in the <code>app.yaml</code>
+  configuration file. This will allow us to deploy multiple versions of the blocks and pages to App Engine without
+  loosing the ability to rollback if there is a problem.</p>
+<p><strong>Evaluation</strong>:</p>
+<p>I think evaluation of Blockly projects is mostly outcomes based. Did they participant's learn? Did they enjoy
+  themselves in the process? Can they translate the content they learned into other areas and domains?</p>
+<h2>Links and References</h2>
+<ul>
+  <li>Papers and essays
+    <ul>
+      <li><a href="https://backchannel.com/the-kids-computer-language-that-became-a-mind-bomb-for-the-hacker-ethic-a0b7e42c229d">This
+          Computer Language Is Feeding Hacker Values into Young Minds</a></li>
+      <li><a href="https://design.blog/2016/08/25/mitchel-resnick-designing-for-wide-walls/">Mitchel Resnick: Designing
+          for Wide Walls</a></li>
+      <li><a href="https://brightreads.com/a-different-approach-to-coding-d679b06d83a">A Different Approach to Coding</a></li>
+      <li><a href="https://www.edsurge.com/news/2013-05-08-learn-to-code-code-to-learn">Learn to Code, Code to Learn</a></li>
+    </ul>
+  </li>
+  <li>Authoring environments
+    <ul>
+      <li>Blockly
+        <ul>
+          <li><a href="https://developers.google.com/blockly/">Developer Documentation</a></li>
+          <li><a href="https://github.com/google/blockly">Github Code Repository</a></li>
+        </ul>
+      </li>
+      <li>Scratch
+        <ul>
+          <li><a href="https://scratch.mit.edu/">Website</a></li>
+          <li><a href="https://scratch.mit.edu/developers">https://scratch.mit.edu/</a></li>
+        </ul>
+      </li>
+      <li>Other Alternatives
+        <ul>
+          <li>Pencil Code
+            <ul>
+              <li><a href="http://pencilcode.net/">Website</a></li>
+              <li><a href="https://github.com/droplet-editor/droplet">Droplet Editor</a></li>
+              <li><a href="http://dev.pencilcode.net/">Pencil Code Dev</a></li>
+            </ul>
+          </li>
+          <li>Snap
+            <ul>
+              <li><a href="http://snap.berkeley.edu/">Main Website</a></li>
+              <li><a href="https://github.com/jmoenig/Snap--Build-Your-Own-Blocks">Github Repo</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>

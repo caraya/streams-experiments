@@ -1,0 +1,483 @@
+
+<body>
+  <div class="grid-container">
+    <div class="masthead">
+      <h1 id="top">Layout experiments</h1>
+    </div>
+    <nav class="navigation">
+      <ul>
+        <li>
+          <a href="#examples">Examples</a> |
+        </li>
+        <li>
+          <a href="#full">Layouts</a> |
+        </li>
+        <li>
+          <a href="#tools">Tools</a> |
+        </li>
+        <li>
+          <a href="#ideas">Ideas</a> |
+        </li>
+        <li>
+          <a href="#fonts">Fonts</a> |
+        </li>
+        <li>
+          <a href="#pm">Paged Media</a> |
+        </li>
+        <li>
+          <a href="#references">References</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="summary">
+      <p>I've been really excited about recent developments in web layout. I've finally decided to get my act together and start building layouts using these new tools. I don't know how many of these layouts will make it to a production site but
+      it's always fun to play with them.</p>
+    </div>
+    <div class="quote">
+      <p>A grid is truly successful only if, after all of the literal probblems have been solved, their designer rises abovethe uniformity implied by its structure and uses it to create a dynamic visual narrative of parts that will sustain interest
+      page after page.</p>
+      <p>Timothy Samara -- Making and Breaking the Grid</p>
+    </div>
+    <div class="content">
+      <h2 id="examples">Examples, Demos and Projects</h2>
+      <p><a href="#top">Top</a></p>
+      <dl class="cols2">
+        <dt>
+          <a href="index.html">Index</a>
+        </dt>
+        <dd>This page. First experiment placing content in a grid.</dd>
+        <dt>
+          <a href="demo1.html">Demo 1: Ichi-Go Ichi-E</a>
+        </dt>
+        <dd>The basic document I'll be working with.</dd>
+        <dt>
+          <a href="demo2.html">Demo 2: Text in masthead</a>
+        </dt>
+        <dd>This is my version of the text covering part of the masthead image.</dd>
+        <dd>I chose not to brek the content into multiple sections but chose to change the background color of the content div to match that of the document background.</dd>
+        <dt>
+          <a href="demo3.html">Demo 3: Vertical Title</a>
+        </dt>
+        <dd>Take the title content and use writing modes to place it verically in browsers that support the CSS rules. I've used feature queries to check that the browser supports writing-modes.</dd>
+        <dd>We use feature queries (@supports) to test if the browser supports writing modes. If it doesn't then we leave the title on top of the image and switch the color to white.</dd>
+        <dd><strong>This demo currently only works in Firefox (tested with Firefox Nightly).</strong></dd>
+        <dt>
+          <a href="demo9.html">Houdini Gradients</a>
+        </dt>
+        <dd>Gradient demos using Houdini APIs. The example gradients uses <code>CSS.registerProperty()</code> to define a <code>--stop-color</code>property that is used in the stylesheet to create a gradient. We then create a hover state for each
+        gradient and animate that.</dd>
+        <dd><strong>Currently only works in Chrome 67+</strong></dd>
+        <dt>
+          <a href="demo10.html">CSS Filters</a>
+        </dt>
+        <dd>Creating effects with CSS is not as complex as it used to be (they don't require SVG) and they are fairly easy to set up. Set an initial filter (grayscale in this case) and then set an effect that will work on hover (remove the grayscale
+        effect to reveal the original color).</dd>
+        <dd>One further area of exploration is combining different filters to test the results.</dd>
+        <dd><strong>CSS only solution hover only works on desktop machines. Mobile devices don't have a hover state and require Javascript or <a href="https://www.w3.org/TR/pointerevents/">Pointer Events</a> to work consistently accross
+        devices.</strong></dd>
+        <dt>
+          <a href="demo11.html">Do weight, width and line height affect readability?</a>
+        </dt>
+        <dd>Using Roboto VF implementation I've configured a quick experiment to prove the hipothesis. There are 4 blocks of text at different widths and one with multiple columns and 3 variables you can adjust (font weight, font width and line
+        height).</dd>
+        <dd>The idea is that we can take the values and plug them in to our production stylesheets as a starting point for further experiments.</dd>
+        <dd>Also, please forgive the code... I know it's messy but it's the first time I do sliders to control CSS from Javascript.</dd>
+        <dd><strong>This currently doesn't work in mobile. Researching the reasons and suspecting Mobile Safari and iOS stack for it. It did not work on iPhone X.</strong></dd>
+        <dt>
+          <a href="demo12.html">Blending Colors Example</a>
+        </dt>
+        <dd>
+          The web allows you to create many of the graphical effects that we see in magazines and other printed media. Based on the pen <a href="https://codepen.io/mandymichael/pen/zoxOdz">Vertical split layout text effect</a> by <a href=
+          "https://codepen.io/mandymichael/">Mandy Michael</a>. I started playing with the idea of using the effect for headings or other highlighted elements.
+        </dd>
+        <dt>
+          <a href="demo13.html">Blending Text and Images</a>
+        </dt>
+        <dd>
+          Code adapted from the article on <a href="http://thenewcode.com/1032/Easy-Cross-Browser-Text-Masks-with-Blend-Modes">The New Code</a> by Dudley Storey about creating text masks using blend modes.
+        </dd>
+        <dd>This may not work in older browsers that don't support blend modes. This example prioritizes text over the image.</dd>
+        <dt>
+          <a href="demo14.html">CSS Houdini Image Place Holders</a>
+        </dt>
+        <dd>
+          Using a demo from <a href="https://codersblock.com/">Will Boyd</a>I built a mock of a Wikipedia page using his <a href="https://github.com/lonekorean/hello-houdini/tree/master/demos/placeholder-box-props">placeholder boxes</a> to mock the
+          placement of the images.
+        </dd>
+        <dd>Yes, I know I could use SVG to do so and it may be a good idea when working with Service Workers to provide a good offline fallback but this way I can play with the dimensions of the place holder and see how it looks at different
+        dimensions before deciding on the final image.</dd>
+
+        <dt><a href="https://caraya.github.io/bibliotype2/">Bibliotype 2</a></dt>
+        <dd>A prototype of a long-form web reader. Based on Craig Mod's original <a href="https://craigmod.com/bibliotype/">Bibliotype</a> project, this new version attempt to use modern technologies such as variable fonts, CSS variables and ES2015 to create a customizable reading experience.</dd>
+
+        <dt><a href="demo17.html">Does vertical text affect Grid Layout?</a></dt>
+        <dd>When using writing modes to layout text, does it affect the way Grid layout works? I've prepared some Japanese Lorem Ipsum text and laid it out using the same grid layout I created for Ichi-go Ichi-e.</dd>
+        <dd>I need to do more research to see what looks normal for Japanese readers using vertical layouts as opposed to the rtl horizontal layout that I've seen the most.</dd>
+        <dd>Another area to explore will be to search and copy mixed layouts of vertical and horizontal Japanese layouts.</dd>
+
+        <dt><a href="demo18.html">CSS Custom Properties</a></dt>
+        <dd>What I call CSS Variables on Steroids. It allows for much better, error tolerant, CSS variables.</dd>
+
+        <dt><a href="demo19.html">Deep Dive on Variable Fonts</a></dt>
+        <dd>Now that Roboto is an almost official variable font. It's worth taking a look at what it does and how it can make our designs better and provide a better user experience.</dd>
+
+
+        <dt><a href="demo33.html">Verge-style list</a></dt>
+        <dd>Borrowing the story stream styles from an <a href="https://www.theverge.com/2018/12/7/17540466/avengers-endgame-4-marvel-cinematic-universe-news-updates-trailers">Avengers 4</a> article in <a href="https://www.theverge.com/">The Verge</a> I want to test different ways to create list items with more than a single line per item.</dd>
+
+        <dt><a href="demo36.html">Fonts in titles</a></dt>
+        <dd>The idea is to see how different fonts look for headings. I'm also curious as to how text-shadows work with the different fonts.</dd>
+        <dd>This is inspired by the title of <a href="demo34.html">The machine that won the war &mdash; V2</a>.</dd>
+
+        <dt><a href="demo38.html">Rise UP</a> card</dt>
+        <dd>Inspired by Hamilton and a t-shirt I saw Lin Manuel Miranda wearing, I thought I may try to copy the design while, at the same time, exploring different uses of color&hellip; particularly bright primary colors.</dd>
+        <dd>I'm not quite sure that abusing left to right reading mode accomplishes the goal I set out, but it's a good starting point</dd>
+        <dd>The font used is Bebas Neue, which I'm starting to like a lot for larger display type work. Depending on the task I may also consider using Marvin.</dd>
+
+        <dt><a href="demo39.html">Example Tittle with Lettering.js</a> (jQuery version)</dt>
+        <dd>Based on a secttion from James Williamson's <a href="https://www.lynda.com/jQuery-tutorials/CSS-Advanced-Typographic-Techniques/116350-2.html">https://www.lynda.com/jQuery-tutorials/CSS-Advanced-Typographic-Techniques/116350-2.html</a> course in <a href="https://www.lynda.com/">Lynda.com</a> (now LinkedIn Learning).</dd>
+        <dd>It uses: z-index positioning, text shadows, and positioning with margins. </dd>
+        <dd>Yes, it uses jQuery and, for this particular demo, I don't reaally care it does. For a production application of this I'd probably use a non-jQuery version of this.</dd>
+        <dt><a href="demo42.html">Nested Flexboxes</a></dt>
+        <dd>This layout uses two kinds of flex boxes, an outer one to control vertical alignment and an inner one for each item that lays out the content in rows. </dd>
+        <dd>The content is videos of scenes from Aaron Sorkin's The West Wing and The Newsroom alongside textual descriptions of the scenes and why I like them. </dd>
+      </dl>
+      <h2 id="full">Full Layouts</h2>
+      <p><a href="#top">Top</a></p>
+      <p>The projects and demos in this section are more realized and use different CSS and Javascript techniques.</p>
+      <dl class="cols2">
+        <dt>
+          <a href="demo4.html">Demo 4: Two column Floater</a>
+        </dt>
+        <dd>
+          My attempt at creating a document with a single image on one side and scrolling text on the other. The first attempt is a single column of text using an actual article from <a href=
+          "http://www.eldesconcierto.cl/2018/04/20/el-edificio-diego-portales-ex-unctad-se-encuentra-en-peligro-de-desaparecer/">eldesconcierto.cl</a>
+        </dd>
+        <dt>
+          <a href="demo15.html">Book Chapter with Roboto VF &mdash; V1</a>
+        </dt>
+        <dd>Using a manual transcript of chapter 73 of Rayuela, I built an example of what a page of that book may look online. A next step will be to test is different starting width for the content impact the reading experience.</dd>
+        <dt>
+          <a href="demo16.html">Book Chapter with Roboto VF &mdash; V2</a>
+        </dt>
+        <dd>Using a manual transcript of chapter 73 of Rayuela, I built an example of what a page of that book may look online. This version makes the content narrower.</dd>
+        <dt>
+          <a href="demo20.html">Magazine Interview</a>
+        </dt>
+        <dd>
+          Using a web magazine article from a <a href="http://www.paula.cl/reportajes-y-entrevistas/andrea-lagos-precht-y-karadima-no-son-comparables/">Revista Paula</a> I started formatting it to see if we could make it look good using a single
+          variable font and grid.
+        </dd>
+        <dd>I'm discovering some of the problems with stretching images into a grid container. I cannot make it stretch on both ends, so I've had to come up with an alternative while I research the reasoning why this happens.</dd>
+        <dt>
+          <a href="demo21.html">Lo Secreto &mdash; María Luisa Bombal</a>
+        </dt>
+        <dd>Experimenting with longer form content and Variable Fonts to see how we can make the text speak in its own voice.</dd>
+        <dd>Since we're using Roboto only for headings and accents I've subset it to use only the characters that we use in the page. That dropped the size of the file from almost 1MB (1008KB to be exact) to under 30K! For this site it might not
+        make that much of a difference since the service worker caches the fonts but for larger projects or those that don't use service workers it's an important consideration.</dd>
+        <dd>
+          Thanks to <a href="https://twitter.com/jpamental">Jason Pamental</a> for help in getting the body font working.
+        </dd>
+        <dt>
+          <a href="demo22.html">Soneto XVII &mdash; Pablo Neruda</a>
+        </dt>
+        <dd>Typesetting poetry is hard. Grid makes it easier to position the body of the poem (left side in Spanish and the right side in the English translation) but there are a few issues that remain like how to do indented text on lines after the
+        second one and other typographical tricks used in poetry without polluting the page with marup that we shouldn't use.</dd>
+        <dd>I'm still exploring possibilities&hellip; one of them may be to use preformated text and style it with our default font for copy. I know it breaks the semantic meaning of the <code>pre</code> element but it might be a good time to break the rules&hellip; I think.</dd>
+        <dt>
+          <a href="demo23.html">Multi Column Layout</a>
+        </dt>
+        <dd>
+          Inspired by a <a href="https://twitter.com/dudleystorey/status/998601363641774081">tweet</a> from <a href="https://twitter.com/dudleystorey/">Dudley Storey</a> I decided I wanted to see what would a multicolumn layout would look like now.
+        </dd>
+        <dd>This layout would greatly benefit from regions or some other kind of fragmentation layout but until the Houdini Page API comes out in browsers we'll have to continue waiting.</dd>
+        <dd>Another detail to note is that I broke the text into two different regions using the same class for the multicolumn content. I should be able to do it with a single multicolumn class and an image that spans all columns.</dd>
+        <dt>
+          <a href="demo24.html">The Crystal Goblet</a> or Printing Should Be Invisible
+        </dt>
+        <dd>Typesetting incorporating drop caps for the first paragraph. I'm starting to look for other fonts to play with in addition to Roboto, Avenir and Source Serif.</dd>
+        <dt>
+          <a href="demo25.html">Profession</a> &mdash; Isaac Asimov
+        </dt>
+        <dd>Working with a novella-size document presents its own set of challenges. How will people read the content? How will people navigate if the have to take more than one time reading?</dd>
+        <dt>
+          <a href="demo26.html">Poema 6</a> and <a href="demo27.html">Poema 19</a> by Pablo Neruda from Veinte Poemas de Amor y una Canción Desesperada
+        </dt>
+        <dd>Two experiments using flexbox to center content both vertically and hortizontally using only CSS and without modifying the content.</dd>
+        <dt>
+          <a href="demo7.html">Flexbox Gallery</a>
+        </dt>
+        <dd>The simplest way to create an image gallery using Flexbox.</dd>
+        <dt>
+          <a href="demo28.html">En ti la tierra</a> &mdash; Pablo Neruda
+        </dt>
+        <dd>Playing with color and additional fonts. Does color (beyond contrast) affect the way in which we read on the web?</dd>
+        <dt>
+          <a href="demo29.html">The last question</a> &mdash; Isaac Asimov
+        </dt>
+        <dd>Using Spectral as the Serif body font and Raleway for headings. I'm still working on getting the right mix for short to medium length, single page readiing experiences.</dd>
+        <dt>
+          <a href="demo30.html">Franchise</a> &mdash; Isaac Asimov
+        </dt>
+        <dd>
+          An experiment using Neue Montreal from <a href="https://pangrampangram.com/">Pangram Pangram Foundry</a> and <a href="https://www.myfonts.com/fonts/rosetta/skolar/">Skolar</a> from Roseta as I continue searching for good font pairings.
+        </dd>
+        <dd>The experiment uses the font loading API to load the fonts and CSS to manage the display</dd>
+        <dt>
+          <a href="demo31.html">The Machine That Won the War</a> &mdash; Isaac Asimov
+        </dt>
+        <dd>
+          An experiment using Neue Montreal from <a href="https://pangrampangram.com/">Pangram Pangram Foundry</a> and <a href="https://fonts.adobe.com/fonts/skolar">Skolar</a> from <a href="https://www.rosettatype.com/">Rosetta Type</a>as I continue searching for good font pairings.
+        </dd>
+        <dd>The experiment uses the Font Face Observer to manage font loading and CSS to control layout and display. Skolar is downloaded via Adobe Typekit/Fonts.</dd>
+
+        <dt><a href="demo32.html">What survives disaster</a></dt>
+        <dd>An article from the <em><strong>Bay Area Now 8</strong></em> exhibit at the <a href="https://www.ybca.org/">Yerba Buena Center For The Arts</a> it attempts to duplicate the printed version of the catalog. I'm working on details and how to make some printed items work in web layouts.</dd>
+
+        <dt><a href="demo34.html">The machine that won the war &mdash; V2</a></dt>
+        <dd>Rework on my <a href="demo31.html">original version</a> using different fonts: <a href="https://www.readvisions.com/marvin">Marvin Visions</a> for the headings and <a href="https://www.myfonts.com/fonts/itc/stone-humanist-itc/">ITC Stone Humanist</a> for the text</dd>
+        <dd>The heading also uses color and text shadows to give it more "punch" than a standard black heading would. Still playing with color/shadow combinations to see what works best. But I think it's a good starting point.</dd>
+
+        <dt><a href="demo35.html">Keeping time</a> &mdash; Kinfolk</dt>
+        <dd>This article first introduced me to the concept of Ichi-go Ichi-e and Mono no aware. The idea is to see how close I can get it to the print layout without loosing the responsiveness inherent to the web page.</dd>
+        <dd>The article was transcribed from <a href="https://kinfolk.com/">Kinfolk Magazine</a>, issue 8.</dd>
+
+        <dt><a href="demo37.html">The Dying Night</a> &mdash; Isaac Asimov</dt>
+        <dd>A different text using <a href="https://www.readvisions.com/marvin">Marvin Visions</a> for the headings and <a href="https://fonts.google.com/specimen/Lekton">Lekton</a> for the text</dd>
+        <dd>I like Lekton as a thiner font and think it's a good starting point for font pairings&hellip; and the more I use Marvin the more I like it :D</dd>
+
+        <dt><a href="demo40.html">All The Troubles In The World</a> &mdash; Isaac Asimov</dt>
+        <dd>This story is set with <a href="https://fonts.google.com/specimen/Cutive">Cutive</a>, a serif font that reminds me of the IBM typewriters that I learned to type on when I was younger. Again, I'm tyring to figure out how the font speaks and what does it say. </dd>
+
+        <dt><a href="demo41.html">The Machine Stops</a> &mdash; E.M. Forster</dt>
+        <dd>Another one of my favorite science fiction storiess. This one is setup in Futura PT.</dd>
+
+        <dt><a href="demo43.html">A Sound of Thunder</a> &mdash; Ray Bradbury</dt>
+        <dd>Using <a href="https://fonts.google.com/specimen/Montserrat">Montserratt</a> for headings and <a href="https://fonts.google.com/specimen/Inconsolata">Inconsolata</a> for the text. It's a time travel story that changes the present so a monospaced font for a different kind of typewriter effect sounds appropriate.</dd>
+      </dl>
+      <h2 id="tools">Tools</h2>
+      <p><a href="#top">Top</a></p>
+      <p>Most of these tools are Javascript based so I may have to start thinking about concatenating scripts and, possibly, bundling them together.</p>
+      <dl class="cols2">
+        <dt>
+          <a href="https://fontfaceobserver.com/">Font Face Observer</a>
+        </dt>
+        <dd>
+          Font Face Observer gives you control over web font loading regardless of where your fonts come from: host them yourself, or use a web font service such as <a href="http://www.google.com/fonts">Google Fonts</a>, <a href=
+          "http://typekit.com">Typekit</a>, <a href="https://fonts.com">Fonts.com</a>, and <a href="http://webtype.com">Webtype</a>.
+        </dd>
+        <dt>
+          <a href="https://dixonandmoe.com/rellax/">Rellax</a>
+        </dt>
+        <dd>I'm exploring using Parallax in a few experiments so I've been looking at what may be the best tool for the use cases I want and, so far, Rellax seems to be the best.</dd>
+        <dt>
+          <a href="https://dudleystorey.github.io/thenewdefaults/">The New Defaults</a>
+        </dt>
+        <dd>
+          Dudley Storey's SASS replacement for the standard CSS keyword color system. Available in <a href="https://github.com/dudleystorey/thenewdefaults/">Github</a>.
+        </dd>
+        <dt>
+          <a href="https://greensock.com/gsap">GSAP JS</a>
+        </dt>
+        <dd>While we can do a fair amount of animations with CSS alone there are times when we need the heavy hitter tools. That's where GSAP comes in.</dd>
+        <dt>
+          <a href="https://zengabor.github.io/zenscroll/">Zenscroll</a>
+        </dt>
+        <dd>Since I decided to use navigation links I wanted it to scroll smoothly up and down. I like the way that Zenscroll doesn't require configuration for a basic setup like the one I use here.</dd>
+        <dt>
+          <a href="https://chriscavs.github.io/t-writer-demo/">T-Writer.js</a>
+        </dt>
+        <dd>Typewriter effects are fun and intriguing and worth some this particular library makes for very intriguing effects.</dd>
+        <dt>
+          <a href="http://letteringjs.com/">Lettering.js</a>
+        </dt>
+        <dd>A jQuery plugin to control individual letters, words and lines for better typographical effects. Only problem (from my perspective) is that it requires jQuery and that's something I'm trying to avoid.</dd>
+        <dt>
+          <a href="http://fittextjs.com/">FitText.js</a>
+        </dt>
+        <dd>This jQuery plugin makes the associated text fluid. As with Lettering.js, my only problem with the plugin is that it requires jQuery and that's something I'm trying to avoid.</dd>
+        <dt>
+          <a href="https://gist.github.com/adactio/1682367">No jQuery Lettering</a> by Jeremy Keith
+        </dt>
+        <dd>A small non-jQuery alternative for Lettering.js</dd>
+        <dt>
+          <a href="https://github.com/slawekkolodziej/FitText.js">No jQuery FitText.js</a>
+        </dt>
+        <dd>Non-jQuery alternative for FitText.js</dd>
+      </dl>
+      <h2 id="ideas">Inspiration and Ideas</h2>
+      <p><a href="#top">Top</a></p>
+      <dl class="cols2">
+        <dt>
+          <a href="https://github.com/cmod/bibliotype">Bibliotype</a>
+        </dt>
+        <dd>One of the earliest ideas on digital publishing outside closed ebook ecosystems. I've been wondering how much more we can do with web technologies as they exist today as opposed to what was available in 2011.</dd>
+        <dd>
+          Demo at <a href="http://caraya.github.io/bibliotype/">http://caraya.github.io/bibliotype/</a>
+        </dd>
+        <dt>
+          <a href="https://codepen.io/collection/DwgRyd/">Variable Font Demos</a> by Jason Pamental
+        </dt>
+        <dd>One of the first collections of applications of Variable Fonts.</dd>
+        <dt>
+          <a href="https://codepen.io/collection/XqRLMb/">Variable Font Demos</a> by Mandy Mitchell
+        </dt>
+        <dd>Another collection of experiments using Variable Fonts.</dd>
+        <dt>
+          The work of <a href="http://rachelnabors.com/">Rachel Nabors</a>
+        </dt>
+        <dd>I think I fell in love with her web animation work when I heard her speak at SFHTML5.</dd>
+        <dt>
+          The work of <a href="https://sarahdrasnerdesign.com/">Sarah Drasner</a>
+        </dt>
+        <dd>
+          Starting with her work with SVG animations and her <a href="http://shop.oreilly.com/product/0636920045335.do">SVG Animations</a> book she has always impressed me with her skills and how she can translate complex animation work to easy to
+          understand concepts.
+        </dd>
+        <dt>
+          <a href="https://labs.jensimmons.com/">The experimental layout lab of Jen Simmons</a>
+        </dt>
+        <dd>I first saw Jen's work at An Event Apart and have always been intrigued by how they work. This project is, in a way, my take on what she has done.</dd>
+        <dt>
+          <a href="https://www.kickstarter.com/projects/elliotjaystocks/8-faces-collected">8 Faces: Collected</a> by Elliot Jay Stocks
+        </dt>
+        <dd>Fell in love with the book when I saw the earlier galley proofs. It's a constant source of ideas and layouts.</dd>
+        <dt>
+          <a href="http://thenewcode.com/">The New Code</a> by <a href="https://twitter.com/dudleystorey?lang=en">Dudley Storey</a>
+        </dt>
+        <dd>Dudley does an awesome work of explaining really coole techniques and processes in a way that people who may not be highly technical can understand and use.</dd>
+
+        <dt><a href="http://bookcoverarchive.com/">Book Cover Archive</a></dt>
+        <dd>Source of references and ideas for playing with fonts and layouts.</dd>
+      </dl>
+      <h2 id="fonts">Fonts and Font-related tools</h2>
+      <p><a href="#top">Top</a></p>
+      <dl class="cols2">
+        <dt>
+          <a href="https://github.com/TypeNetwork/Roboto">Roboto VF</a>
+        </dt>
+        <dd>A variable font implementation of Roboto, the default font for Material Design and other products. This is a completeimplementation and it seeks full parity with the regular Roboto font from Google.</dd>
+        <dt>
+          <a href="https://github.com/google/woff2">WOFF2 compressor</a>
+        </dt>
+        <dd>A tool that will compress TTF or OTF fonts to provide smaller file sizes and faster downloads. When compressing Roboto (see above) it provided better than 50% file size reduction.</dd>
+        <dt>
+          <a href="https://www.npmjs.com/package/glyphhanger">Glyphhanger</a>
+        </dt>
+        <dd>The best way to reduce a font's size is to remove all characters that we'll not use. This is extra important when working with large fonts that support non-latin languages.</dd>
+        <dt>
+          <a href="https://www.axis-praxis.org/specimens/__DEFAULT__">Axis Praxis</a>
+        </dt>
+        <dd>Axis Praxis was the first site that showed me what Variable Fonts can do.</dd>
+        <dt>
+          <a href="https://wakamaifondue.com/">Wakamainfondue</a>
+        </dt>
+        <dd>This tool works with Variable fonts and it shows you what the font can do, creates special CSS for you to use in your documents when working with the font and gives you the CSS to download for your own projects :).</dd>
+        <dt>
+          <a href="https://v-fonts.com/">Variable Fonts</a>
+        </dt>
+        <dd>Variable fonts is another playground for Variable fonts. What distinguishes it is the number of fonts available and the ability to play with the custom axes for each font and see the results on the same page.</dd>
+        <dt>
+          MDN <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide">Variable fonts guide</a> by Jason Pamental
+        </dt>
+        <dd>I met Jason a few years ago at Fluent and have followed his typography work since. He does a very good and detailed work of explaining and show what variable fonts are and how they work.</dd>
+        <dt>
+          <a href="https://blog.prototypr.io/an-exploration-of-variable-fonts-37f85a91a048">An Exploration of Variable Fonts</a>
+        </dt>
+        <dd>More variable fonts</dd>
+        <dt>
+          <a href="https://drafts.csswg.org/css-fonts-3/">CSS Fonts Module Level 3</a>
+        </dt>
+        <dd>The current candidate recommendation for fonts on the web.</dd>
+        <dt>
+          <a href="https://drafts.csswg.org/css-fonts-4/">CSS Fonts Module Level 4</a>
+        </dt>
+        <dd>More recent work on web fonts, including support for variable fonts and font synthesis.</dd>
+      </dl>
+      <h2 id="pm">CSS Paged Media</h2>
+      <p><a href="#top">Top</a></p>
+      <p>CSS Paged Media provides extensions to CSS 2 and CSS 3 modules that will allow them to work in generating high quality printed PDF or good masters for printers to work with. The best example I've seen is Lea Verou's <a href=
+      "http://shop.oreilly.com/product/0636920031123.do">CSS Secrets</a> that was created as HTML and then printed using CSS Paged Media.</p>
+      <p>Browser support for Paged Media and Generated content for paged media is slim so we have to use third party tools like PrinceXML, and Vivliostyle neither of which are free :(</p>
+      <dl class="cols2">
+        <dt>
+          <a href="https://www.w3.org/TR/css3-page/">CSS Paged Media Module Level 3</a>
+        </dt>
+        <dd>The specification that dictates how most of the content will work when we create printable versions of our web pages</dd>
+        <dt>
+          <a href="https://www.w3.org/TR/css-gcpm-3/">CSS Generated Content for Paged Media Module</a>
+        </dt>
+        <dd>Handles generated content like page numbers, sequential numbering and others.</dd>
+        <dt>
+          <a href="https://www.princexml.com/">PrinceXML</a>
+        </dt>
+        <dd>The first and, in my opinion, the best tool to work with CSS Paged Media.</dd>
+        <dt>
+          <a href="https://vivliostyle.com/en/">Vivliostyle</a> / <a href="https://trim-marks.com/en/">Trim-marks Inc.</a>
+        </dt>
+        <dd>Another CSS Paged Media conversion tool.</dd>
+      </dl>
+      <h2 id="references">Reference Books and Sites</h2>
+      <p><a href="#top">Top</a></p>
+      <dl class="cols2">
+        <dt>
+          <a href="http://shop.oreilly.com/product/0636920012726.do">CSS: The Definitive Guide</a>
+        </dt>
+        <dd>
+          The latest version of my favorite CSS book. <a href="https://meyerweb.com/">Eric Meyer</a> and <a href="http://www.standardista.com/">Estelle Weyl</a> do a very thorough and exhaustive analaysis and explanation of CSS and its different
+          components.
+        </dd>
+        <dt>
+          <a href="http://labs.jensimmons.com/">The Experimental Layout Lab of Jen Simmons</a>
+        </dt>
+        <dd>I love the work Jen has done in teaching, writing and demoing web layout technologies.</dd>
+        <dt>
+          <a href="https://abookapart.com/products/the-new-css-layout">The New CSS Layout</a>
+        </dt>
+        <dt>
+          <a href="https://gridbyexample.com/">Grid By Example</a>
+        </dt>
+        <dd>Awesome resource to learn about CSS grid.</dd>
+        <dt>
+          <a href="http://webtypography.net/">The Elements of Typographic Style Applied to the Web</a> and <a href="http://book.webtypography.net/">Web Typography</a>, the book it originated
+        </dt>
+        <dd>These two projects take Robert Bringhurst&rsquo;s The Elements of Typographic Style and applies its principles to working in the web and with web content.</dd>
+        <dt>
+          <a href="http://shop.oreilly.com/product/0636920034063.do">Responsive Typography</a> by Jason Pamental
+        </dt>
+        <dd>Responsive web design helps your site maintain its design integrity on a variety of screen sizes, but how does it affect your typography?</dd>
+        <dt>
+          <a href="https://abookapart.com/products/flexible-typesetting">Flexible Typesetting</a> by Tim Brown
+        </dt>
+        <dd>I've always thought of typography as part of the design proces not as first step in working the content in to your site or app. Reading this book is making me think morre about the text I'm working with and how to provide a good reading
+        experience.</dd>
+        <dt>
+          <a href="https://abookapart.com/products/on-web-typography">On Web Typography</a> by Jason santa María.
+        </dt>
+        <dd>This, to me, is the original typography book. It's a great reference for typography on the web, both the technical and the human side.</dd>
+        <dt>
+          <a href="https://abookapart.com/products/webfont-handbook">Webfont Handbook</a> by Bram Stein
+        </dt>
+        <dd>This is a more specific book on using web fonts.</dd>
+        <dt>
+          <a href="https://medium.com/variable-fonts/https-medium-com-tiro-introducing-opentype-variable-fonts-12ba6cd2369">Introducing Variable Fonts</a>
+        </dt>
+        <dd>Good technical introduction to Variable Fonts. Not for beginners.</dd>
+        <dt>
+          <a href="https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts/">Introduction to variable fonts on the web</a>
+        </dt>
+        <dd>
+          This article by <a href="https://twitter.com/Mustafa_X">Mustafa Kurtuldu</a> (Design Advocate at Google) does a good job of introducting variable fonts without the technical language from the previous article. It also introduces the CSS
+          needed to make variable fonts work on browsers.
+        </dd>
+        <dt>
+          <a href="https://css-tricks.com/one-file-many-options-using-variable-fonts-web/">One File, Many Options: Using Variable Fonts on the Web</a>
+        </dt>
+        <dd>CSS Tricks article on Variable Fonts. It's the gentlest introduction article I've found, so far.</dd>
+        <dt>
+          <a href="https://markboulton.co.uk/journal/anewcanon">A New Canon</a>
+        </dt>
+        <dd>A good design philosophy article.</dd>
+      </dl>
+    </div>
+  </div>

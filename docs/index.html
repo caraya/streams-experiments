@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Streaming service worker demo</title>
+</head>
+<body>
+<h1>Workbox Streams</h1>
+
+<p>This is an experiment to see if I can get <code>workbox.streams</code> to work.</p>
+
+<p>let's talk <a href="page1.html">ABOUT THIS PAGE</a></p>
+
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js');
+    console.log('Service Worker registered');
+}
+</script>
+</body>
+</html>

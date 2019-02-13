@@ -1,0 +1,80 @@
+@supports (display: grid) {
+  .grid-container {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-auto-rows: minmax(200px, auto);
+    grid-gap: 0.5em 0.5em;
+    margin: 0 auto;
+    align-content: stretch;
+    overflow: visible;
+  }
+
+  .masthead {
+    grid-column: 1/4;
+    background-color: black;
+  }
+
+  .summary {
+    grid-column: 1/4;
+    grid-row: 2/2;
+    margin: 0 2em;
+    border-bottom: 1px solid black;
+  }
+
+  nav {
+    grid-column: 2/4;
+    grid-row: 3;
+  }
+  nav ul {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  nav ul li {
+    font-size: 1.5rem;
+    list-style-type: none;
+  }
+
+  .quote {
+    grid-column: 1/1;
+    grid-row: 4/4;
+    align-self: center;
+    padding: 0 2em;
+  }
+  .quote > p {
+    font-style: italic;
+  }
+
+  .content {
+    grid-column: 2/4;
+    grid-row: 4;
+    margin: 0 1em;
+    contain: content;
+  }
+  .content dd {
+    margin-bottom: 1em;
+  }
+
+  .cols2 {
+    columns: 2;
+    column-width: 250px;
+    column-gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    color: #ffffff;
+  }
+}
+@media (max-width: 800px) {
+  .grid-container {
+    display: block;
+  }
+
+  .quote {
+    font-style: italic;
+    font-size: calc(var(--bq-font-size-min) * 1.5);
+  }
+}
+
+/*# sourceMappingURL=index.css.map */
