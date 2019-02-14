@@ -1,5 +1,5 @@
 /* eslint max-len: 'off', require-jsdoc: 'off' */
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.0.0-beta.0/workbox-sw.js');
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.0.0-rc2/workbox-sw.js');
 
 // Place holder for precached assets
 workbox.precaching.precacheAndRoute([]);
@@ -9,9 +9,9 @@ workbox.setConfig({
   debug: true,
 });
 
-const HEAD = '/page-top.html';
-const FOOT = '/page-bottom.html';
-const ERROR = '/page-error.html';
+const HEAD = 'partials/page-top.html';
+const FOOT = 'partials/page-bottom.html';
+const ERROR = 'partials/page-error.html';
 
 const cacheStrategy = workbox.strategies.cacheFirst({
   cacheName: workbox.core.cacheNames.precache,
